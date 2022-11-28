@@ -19,10 +19,8 @@ string[] FillArray()
         empty[i] = Console.ReadLine();
         count--;
         Console.WriteLine($"Вы можете внести в таблицу {count} строк! Нажмите Enter, чтобы продолжить вводить строки.");
-
         if (Console.ReadKey().Key != ConsoleKey.Enter) return empty;
     }
-
     return empty;
 }
 void PrintArray(string[] fill)
@@ -32,14 +30,13 @@ void PrintArray(string[] fill)
     {
         if (fill[i].Length == 3 || fill[i].Length < 3)
         {
-            count ++;
+            count++;
             Console.WriteLine($"На позиции {i} есть строка, где количество символов меньше или равно 3 - {fill[i]}.");
             Console.WriteLine();
         }
         else break;
     }
-    if(count > 0)return;
+    if (count > 0) return;
     else Console.WriteLine("В таблице нет строк, у которых количество символов меньше или равно 3!");
-
 }
 Main();
