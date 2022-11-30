@@ -4,13 +4,14 @@
     Console.WriteLine("Start");
     string[] fill = FillArray();
     Console.WriteLine();
-    PrintArray(fill);
+    string[] sort = SortArray(fill);
+    PrintArray(sort);
     Console.WriteLine();
     Console.WriteLine("End");
 }
 string[] FillArray()
 {
-    string[] empty = new string[10];
+    string[] empty = new string[5];
     int count = empty.Length;
 
     for (int i = 0; i < empty.Length; i++)
@@ -18,25 +19,43 @@ string[] FillArray()
         Console.Write("Введите строку: ");
         empty[i] = Console.ReadLine();
         count--;
-        Console.WriteLine($"Вы можете внести в таблицу {count} строк! Нажмите Enter, чтобы продолжить вводить строки.");
-        if (Console.ReadKey().Key != ConsoleKey.Enter) return empty;
+        Console.WriteLine($"Вы можете внести в таблицу {count} строк!");
     }
     return empty;
 }
-void PrintArray(string[] fill)
+string[] SortArray(string[] fill)
 {
+    int length = 0;
     int count = 0;
+
     for (int i = 0; i < fill.Length; i++)
     {
-        if (fill[i].Length == 3 || fill[i].Length < 3)
-        {
-            count++;
-            Console.WriteLine($"На позиции {i} есть строка, где количество символов меньше или равно 3 - {fill[i]}.");
-            Console.WriteLine();
-        }
-        else break;
+        if (fill[i].Length <= 3) length++;
     }
-    if (count > 0) return;
-    else Console.WriteLine("В таблице нет строк, у которых количество символов меньше или равно 3!");
+
+    string[] empty = new string[length];
+
+    for (int i = 0; i < fill.Length; i++)
+    {
+        if (fill[i].Length <= 3)
+        {
+            empty[count] = fill[i];
+            count++;
+        }
+    }
+    return empty;
+}
+void PrintArray(string[] sort)
+{
+    if (sort.Length == 0) Console.WriteLine("В таблице нет строк с символами равными или меньше 3!");
+    else
+    {
+        Console.WriteLine("Отсортированная таблица, где строка равна или меньше 3 символов:");
+        Console.WriteLine();
+        for (int i = 0; i < sort.Length; i++)
+        {
+            Console.Write($"{sort[i]} ");
+        }
+    }
 }
 Main();
